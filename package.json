@@ -1,0 +1,21 @@
+{
+  "name": "xpasskey",
+  "version": "2.0.0",
+  "description": "Revamped Password Generator",
+  "main": "app.js",
+  "preferGlobal": true,
+  "bin": "./commands.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sandipan Das",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "chalk": "^4.1.2",
+    "clipboardy": "^2.3.0",
+    "commander": "^8.1.0",
+    "inquirer": "^8.1.2",
+    "mongoose": "^5.13.2"
+  }
+}
