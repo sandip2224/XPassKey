@@ -88,7 +88,10 @@ program
                 const generatePassword=creator(answers.len, answers.num, answers.sym)
                 clipboardy.writeSync(generatePassword)
                 console.log(chalk.blue("🚩 Password copied to clipboard!!"))
-                updatePassKey({account: answers.acc, passKey: generatePassword})
+                bcrypt.hash(generatePassword, 10, (err, hash)=>{
+                    updatePassKey({account: answers.acc, passKey: hash})
+                });
+                
         	})
     })
 
@@ -106,7 +109,7 @@ program
 program
     .command('list')
     .alias('l')
-    .description('➕ Generate a new passkey')
+    .description('➕ List all available passkeys')
     .action(()=>{
         listPassKeys()
     })
