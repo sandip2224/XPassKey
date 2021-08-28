@@ -28,17 +28,29 @@
 
 ## 🔥 Screenshots
 
-| **xpasskey gen** | **xpasskey find** |
-| - | - |
-| <img src="media/1.PNG"  width="1000"/> | <img src="media/2.PNG"  width="1000"/> |
+| **xpasskey gen** |
+| - |
+| <img src="media/1.PNG"  width="1000"/> |
 
-| **xpasskey update** | **xpasskey delete** |
-| - | - |
-| <img src="media/3.PNG"  width="1000"/> | <img src="media/4.PNG"  width="1000"/> |
+| **xpasskey find** |
+| - |
+| <img src="media/2.PNG"  width="1000"/> |
 
-| **xpasskey list** | **xpasskey -h** |
-| - | - |
-| <img src="media/5.PNG"  width="1000"/> | <img src="media/6.PNG"  width="1000"/> |
+| **xpasskey update** |
+| - |
+| <img src="media/3.PNG"  width="1000"/> |
+
+| **xpasskey delete** |
+| - |
+| <img src="media/4.PNG"  width="1000"/> |
+
+| **xpasskey list** |
+| - |
+| <img src="media/5.PNG"  width="1000"/> |
+
+| **xpasskey -h** |
+| - |
+| <img src="media/6.PNG"  width="1000"/> |
 
 
 <!-- BUILT WITH -->  
