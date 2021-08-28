@@ -2,7 +2,7 @@
 *🔒Password management made simpler. Generate and store a secure passkey instantly from your command line.*
 
 <p align="center">
-   <img src="media/banner1.gif" alt="Logo"/>
+   <img src="media/banner1.png" alt="Logo"/>
 </p>
 <!-- PROJECT LOGO -->
 
