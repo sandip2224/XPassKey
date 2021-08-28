@@ -28,6 +28,10 @@
 
 <!-- BUILT WITH -->  
 
+## Feasible Applications
+
+- Can be used in user authentication to verify the integrity of user input and hashed password.
+
 ## How to Install Locally
 
 **1. Fork and clone this repository using**
