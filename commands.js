@@ -4,9 +4,10 @@ const program=require('commander');
 const bcrypt=require('bcrypt')
 const clipboardy = require('clipboardy');
 const {prompt}=require('inquirer')
+const chalk=require('chalk')
 
 const creator=require('./utils/createPassKey')
-const {addPassKey, findPassKey, updatePassKey, deletePassKey}=require('./app')
+const {addPassKey, findPassKey, updatePassKey, deletePassKey, listPassKeys}=require('./app')
 
 const cQuestions=[
     {
@@ -58,6 +59,8 @@ program
         	prompt(cQuestions)
 			.then(answers=>{
                 const generatePassword=creator(answers.len, answers.num, answers.sym)
+                clipboardy.writeSync(generatePassword)
+                console.log(chalk.blue("🚩 Password copied to clipboard!!"))
                 bcrypt.hash(generatePassword, 10, (err, hash)=>{
                     addPassKey({account: answers.acc, passKey: hash})
                 });
@@ -83,6 +86,8 @@ program
         	prompt(uQuestions)
 			.then(answers=>{
                 const generatePassword=creator(answers.len, answers.num, answers.sym)
+                clipboardy.writeSync(generatePassword)
+                console.log(chalk.blue("🚩 Password copied to clipboard!!"))
                 updatePassKey({account: answers.acc, passKey: generatePassword})
         	})
     })
@@ -96,6 +101,14 @@ program
 			.then(answers=>{
                 deletePassKey(answers)
         	})
+    })
+
+program
+    .command('list')
+    .alias('l')
+    .description('➕ Generate a new passkey')
+    .action(()=>{
+        listPassKeys()
     })
 
 program.parse();

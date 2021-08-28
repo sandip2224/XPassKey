@@ -52,7 +52,7 @@ const updatePassKey=(res)=>{
     })
 }
 
-// // Delete account and password
+// Delete account and password
 const deletePassKey=(res)=>{
     const query={account: res.acc}
     passKeyModel.findOneAndDelete(query, (err, ans)=>{
@@ -61,10 +61,27 @@ const deletePassKey=(res)=>{
         mongoose.connection.close();
     });
 }
-    
+
+// Display all existing accounts and passwords
+const listPassKeys=()=>{
+    passKeyModel.find().then(c1=>{
+        console.log("\nList of Passwords")
+        c1.forEach(c2=>{
+            console.log(" ")
+            console.log("⚡ Account Name: "+c2.account);
+            console.log("⚡ PassKey: "+c2.passKey);
+        })
+        console.log(" ")
+        console.info(`🔍️ ${c1.length} accounts(s) found`)
+        mongoose.connection.close();
+    })
+}
+
+
 module.exports={
     addPassKey,
     findPassKey,
     updatePassKey,
-    deletePassKey
+    deletePassKey,
+    listPassKeys
 }
