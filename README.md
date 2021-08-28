@@ -1,5 +1,5 @@
 # XPassKey🔑
-*🔒Password management made simpler. Generate and store a secure passkey instantly from your command line.*
+***🔒 Password management made simpler. Generate a secure passkey instantly from your command line.***
 
 <p align="center">
    <img src="media/banner1.png" alt="Logo"/>
@@ -27,6 +27,10 @@
 ---
 
 <!-- BUILT WITH -->  
+
+## Feasible Applications
+
+- Can be used in user authentication to verify the integrity of user input and hashed password.
 
 ## How to Install Locally
 
