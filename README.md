@@ -2,7 +2,7 @@
 *🔒Password management made simpler. Generate and store a secure passkey instantly from your command line.*
 
 <p align="center">
-   <img src="media/banner1.gif" alt="Logo"/>
+   <img src="media/banner1.png" alt="Logo"/>
 </p>
 <!-- PROJECT LOGO -->
 
@@ -25,21 +25,6 @@
 - ***User-based filters** on numeric and symbolic characters.*
 - *Generated passskeys are automatically saved to user clipboard.*
 ---
-
-## 🔥 Screenshots
-
-| **xpasskey gen** | **xpasskey find** |
-| - | - |
-| <img src="media/1.PNG"  width="1000"/> | <img src="media/2.PNG"  width="1000"/> |
-
-| **xpasskey update** | **xpasskey delete** |
-| - | - |
-| <img src="media/3.PNG"  width="1000"/> | <img src="media/4.PNG"  width="1000"/> |
-
-| **xpasskey list** | **xpasskey -h** |
-| - | - |
-| <img src="media/5.PNG"  width="1000"/> | <img src="media/6.PNG"  width="1000"/> |
-
 
 <!-- BUILT WITH -->  
 
@@ -66,14 +51,14 @@
 
 ## Commands
 
-| **Short** | **Long**              | **Description**                     |
-| ----- | ----------------- | ------------------------------- |
-| gen    | generate | ➕ Generate a new passkey for an account |
-| f    | find            | 🔍 Search for an existing account passkey  |
-| u   | update      | 📝 Update an account passkey                |
-| del   | delete      | 🚩 Delete a passkey from database                  |
-| -h    | --help            | 🚀 Display help for command        |
-| -V    | --version         | 🔑 Display the current version                |
+| **Short** | **Long**              | **Description**                     | **Preview Images**|
+| ----- | ----------------- | ------------------------------- | -- |
+| gen    | generate | ➕ Generate a new passkey for an account | [Preview](media/1.PNG) |
+| f    | find            | 🔍 Search for an existing account passkey  | [Preview](media/2.PNG) |
+| u   | update      | 📝 Update an account passkey                | [Preview](media/3.PNG) |
+| del   | delete      | 🚩 Delete a passkey from database                  | [Preview](media/4.PNG) |
+| l    | list            | 🔑 Display all existing passkeys in database      | [Preview](media/5.PNG) |
+| -h    | --help         | 🚀 Display help for command                | [Preview](media/6.PNG) |
 
 ---
 
