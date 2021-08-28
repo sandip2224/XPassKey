@@ -7,6 +7,8 @@ const {prompt}=require('inquirer')
 const chalk=require('chalk')
 
 const creator=require('./utils/createPassKey')
+const savePassKey = require('./utils/savePassKey')
+
 const {addPassKey, findPassKey, updatePassKey, deletePassKey, listPassKeys}=require('./app')
 
 const cQuestions=[
@@ -32,6 +34,12 @@ const cQuestions=[
         name: 'num',
         message: 'Do you want numbers?(y/n)',
 		default: 'y'
+    },
+    {
+        type:'input',
+        name: 'save',
+        message: 'Do you want to save passkey locally (passkeys.txt)?(y/n)',
+		default: 'n'
     },
 ]
 
@@ -60,6 +68,9 @@ program
 			.then(answers=>{
                 const generatePassword=creator(answers.len, answers.num, answers.sym)
                 clipboardy.writeSync(generatePassword)
+                if(answers.save==='y'){
+                    savePassKey(answers.acc, generatePassword)
+                }
                 console.log(chalk.blue("🚩 Password copied to clipboard!!"))
                 bcrypt.hash(generatePassword, 10, (err, hash)=>{
                     addPassKey({account: answers.acc, passKey: hash})
@@ -87,6 +98,9 @@ program
 			.then(answers=>{
                 const generatePassword=creator(answers.len, answers.num, answers.sym)
                 clipboardy.writeSync(generatePassword)
+                if(answers.save==='y'){
+                    savePassKey(answers.acc, generatePassword)
+                }
                 console.log(chalk.blue("🚩 Password copied to clipboard!!"))
                 bcrypt.hash(generatePassword, 10, (err, hash)=>{
                     updatePassKey({account: answers.acc, passKey: hash})
