@@ -14,8 +14,12 @@ mongoose.Promise=global.Promise
 const db=mongoose.connect('mongodb://localhost:27017/passKeyDB', {
     useFindAndModify: false,
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    connectTimeoutMS: 30000,
+    keepAlive: 1
 })
+
+// ----------------------------------Tested OK Starts----------------------------------------------------------- //
 
 // Create password entry
 const addPassKey=(passKey)=>{
@@ -68,6 +72,7 @@ const listPassKeys=()=>{
         console.log("\nList of Passwords")
         c1.forEach(c2=>{
             console.log(" ")
+            console.log("⚡ Account ID: "+c2._id)
             console.log("⚡ Account Name: "+c2.account);
             console.log("⚡ PassKey: "+c2.passKey);
         })
@@ -77,11 +82,49 @@ const listPassKeys=()=>{
     })
 }
 
+// ----------------------------------Tested OK Ends----------------------------------------------------------- //
+
+// const authenticator=(res)=>{
+//     if((res.id).match(/^[0-9a-fA-F]{24}$/)) {
+//         passKeyModel.find({_id: res.id}).then(c1 => {
+//             console.log(c1);
+            // bcrypt.compare(res.pass, c1[0].passKey, (err, result)=>{
+            //     if(result) console.log("Password is correct!!")
+            //     else console.log("Passkey is incorrect. Use [xpasskey update] to reset your passkey!!")
+            // });
+//             mongoose.connection.close();
+//         });
+//     }
+//     else{
+//         console.log("Account ID is invalid. Please recheck with your database.")
+//     }
+//     mongoose.connection.close();
+// }
+
+const authenticator=(res)=>{
+    if((res.id).match(/^[0-9a-fA-F]{24}$/)){
+        // console.log("\nMatched Accounts")
+        // console.log(res);
+        passKeyModel.find({_id: res.id}).then(c1 => {
+            bcrypt.compare(res.pass, c1[0].passKey, (err, result)=>{
+                if(result) console.log("Password is correct!!")
+                else console.log("Passkey is incorrect. Use [xpasskey update] to reset your passkey!!")
+            });
+            console.log(`🔍 Query returned ${c1.length} matches!!`);
+            mongoose.connection.close();
+        });
+    }
+    else{
+        console.log("Account ID is invalid. Please recheck with your database.")
+        console.log("Ctrl+C to exit")
+    }
+}
 
 module.exports={
     addPassKey,
     findPassKey,
     updatePassKey,
     deletePassKey,
-    listPassKeys
+    listPassKeys,
+    authenticator
 }

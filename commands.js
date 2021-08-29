@@ -9,7 +9,12 @@ const chalk=require('chalk')
 const creator=require('./utils/createPassKey')
 const savePassKey = require('./utils/savePassKey')
 
-const {addPassKey, findPassKey, updatePassKey, deletePassKey, listPassKeys}=require('./app')
+const { addPassKey,
+        findPassKey, 
+        updatePassKey, 
+        deletePassKey, 
+        listPassKeys,
+        authenticator }=require('./app')
 
 const cQuestions=[
     {
@@ -54,6 +59,19 @@ const fQuestions=[
 const uQuestions=cQuestions
 const dQuestions=fQuestions
 
+const auth=[
+    {
+        type:'input',
+        name: 'id',
+        message: 'Enter account ID:'
+    },
+    {
+        type:'input',
+        name: 'pass',
+        message: 'Enter current password:'
+    },
+]
+
 program
     .version('1.0.0')
     .alias('v')
@@ -79,14 +97,14 @@ program
     })
 
 program
-    .command('find')
-    .alias('f')
-    .description('🔍 Search for an existing account')
+    .command('authenticate')
+    .alias('auth')
+    .description('🔍 Do you remember your passkey? Check here')
     .action(()=>{
-        	prompt(fQuestions)
-			.then(answers=>{
-                findPassKey(answers)
-        	})
+            prompt(auth)
+            .then(answers=>{
+                authenticator(answers)
+            })
     })
 
 program
