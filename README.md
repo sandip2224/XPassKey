@@ -23,7 +23,8 @@
 - *User choice to save passkeys to **local text file**.*
 - *Generated passkeys are hashed and stored in MongoDB.*
 - ***User-based filters** on numeric and symbolic characters.*
-- *Generated passskeys are automatically saved to user clipboard.*
+- *Generated passskeys are automatically saved to user clipboard.*.
+- *Support for password validation inside the interface.*
 ---
 
 <!-- BUILT WITH -->  
