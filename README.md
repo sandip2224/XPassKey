@@ -63,7 +63,9 @@
 | u   | update      | 📝 Update an account passkey                | [Preview](media/3.PNG) |
 | del   | delete      | 🚩 Delete a passkey from database                  | [Preview](media/4.PNG) |
 | l    | list            | 🔑 Display all existing passkeys in database      | [Preview](media/5.PNG) |
+| auth    | authenticate            | 🔍 Do you remember your account passkey? Check here      | [Preview](media/7.PNG) |
 | -h    | --help         | 🚀 Display help for command                | [Preview](media/6.PNG) |
+
 
 ---
 
