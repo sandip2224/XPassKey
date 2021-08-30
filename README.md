@@ -57,6 +57,12 @@
   npm link
   ```
 
+**4. Create an environment variable (config.env) inside `/config` folder and set the following:**  
+
+  ```
+  MONGO_URI=<Your_Unique_MongoDB_Atlas_URI>
+  ```
+
 ## Commands
 
 | **Short** | **Long**              | **Description**                     | **Preview Images**|
