@@ -6,18 +6,12 @@ const program=require('commander')
 const chalk=require('chalk')
 const clipboardy=require('clipboardy')
 
+require('dotenv').config({path: './config/config.env'})
+const connectDB=require('./config/db')
 const passKeyModel=require('./models/passKeys')
 
-mongoose.Promise=global.Promise
-
-//Connect to db
-const db=mongoose.connect('mongodb://localhost:27017/passKeyDB', {
-    useFindAndModify: false,
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    connectTimeoutMS: 30000,
-    keepAlive: 1
-})
+// Connect to db
+connectDB()
 
 // ----------------------------------Tested OK Starts----------------------------------------------------------- //
 
@@ -83,23 +77,6 @@ const listPassKeys=()=>{
 }
 
 // ----------------------------------Tested OK Ends----------------------------------------------------------- //
-
-// const authenticator=(res)=>{
-//     if((res.id).match(/^[0-9a-fA-F]{24}$/)) {
-//         passKeyModel.find({_id: res.id}).then(c1 => {
-//             console.log(c1);
-            // bcrypt.compare(res.pass, c1[0].passKey, (err, result)=>{
-            //     if(result) console.log("Password is correct!!")
-            //     else console.log("Passkey is incorrect. Use [xpasskey update] to reset your passkey!!")
-            // });
-//             mongoose.connection.close();
-//         });
-//     }
-//     else{
-//         console.log("Account ID is invalid. Please recheck with your database.")
-//     }
-//     mongoose.connection.close();
-// }
 
 const authenticator=(res)=>{
     if((res.id).match(/^[0-9a-fA-F]{24}$/)){

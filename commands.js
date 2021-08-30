@@ -77,6 +77,7 @@ program
     .alias('v')
     .description('XPassKey🔑')
 
+
 program
     .command('generate')
     .alias('gen')
@@ -97,13 +98,13 @@ program
     })
 
 program
-    .command('authenticate')
-    .alias('auth')
-    .description('🔍 Do you remember your passkey? Check here')
+    .command('find')
+    .alias('f')
+    .description('🔍 Search for an existing account')
     .action(()=>{
-            prompt(auth)
+            prompt(fQuestions)
             .then(answers=>{
-                authenticator(answers)
+                findPassKey(answers)
             })
     })
 
@@ -136,6 +137,17 @@ program
 			.then(answers=>{
                 deletePassKey(answers)
         	})
+    })
+
+program
+    .command('authenticate')
+    .alias('auth')
+    .description('🔍 Do you remember your passkey? Check here')
+    .action(()=>{
+            prompt(auth)
+            .then(answers=>{
+                authenticator(answers)
+            })
     })
 
 program
