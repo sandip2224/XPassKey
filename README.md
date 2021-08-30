@@ -60,7 +60,7 @@
 **4. Create an environment variable (config.env) inside `/config` folder and set the following:**  
 
   ```
-  MONGO_URI=<Your_Unique_MongoDB_Atlas_URI>
+  MONGO_URI=<Your_Unique_MongoDB_Cluster_URI>
   ```
 
 ## Commands
