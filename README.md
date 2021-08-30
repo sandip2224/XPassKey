@@ -25,6 +25,9 @@
 - ***User-based filters** on numeric and symbolic characters.*
 - *Generated passskeys are automatically saved to user clipboard.*.
 - *Support for password validation inside the interface.*
+
+## New Updates
+- *Migrated application to MongoDB Atlas*
 ---
 
 <!-- BUILT WITH -->  
