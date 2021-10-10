@@ -13,8 +13,6 @@ const passKeyModel=require('./models/passKeys')
 // Connect to db
 connectDB()
 
-// ----------------------------------Tested OK Starts----------------------------------------------------------- //
-
 // Create password entry
 const addPassKey=(passKey)=>{
     passKeyModel.create(passKey).then(passKey=>{
@@ -76,12 +74,8 @@ const listPassKeys=()=>{
     })
 }
 
-// ----------------------------------Tested OK Ends----------------------------------------------------------- //
-
 const authenticator=(res)=>{
     if((res.id).match(/^[0-9a-fA-F]{24}$/)){
-        // console.log("\nMatched Accounts")
-        // console.log(res);
         passKeyModel.find({_id: res.id}).then(c1 => {
             bcrypt.compare(res.pass, c1[0].passKey, (err, result)=>{
                 if(result) console.log("Password is correct!!")

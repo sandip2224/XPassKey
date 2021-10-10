@@ -9,7 +9,6 @@ const connectDB=async ()=>{
             connectTimeoutMS: 30000,
             keepAlive: 1
         })
-        // console.log(`MongoDB Connected: ${conn.connection.host}`)
     }
     catch(err){
         console.log(err)
