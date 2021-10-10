@@ -77,7 +77,6 @@ program
     .alias('v')
     .description('XPassKey🔑')
 
-
 program
     .command('generate')
     .alias('gen')
