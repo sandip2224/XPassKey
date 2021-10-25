@@ -19,7 +19,7 @@
 
 ## Notable Features
 
-- *Supports **CRUD** functionality for passkeys on MongoDB*
+- *Supports **CRUD** functionality for passkeys on MongoDB Atlas*
 - *User choice to save passkeys to **local text file**.*
 - *Generated passkeys are hashed and stored in MongoDB.*
 - ***User-based filters** on numeric and symbolic characters.*
