@@ -1,12 +1,7 @@
 # XPassKey🔑
 ***🔒 Password management made simpler. Generate a secure passkey instantly from your command line.***
 
-<p align="center">
-   <img src="media/banner1.png" alt="Logo"/>
-</p>
 <!-- PROJECT LOGO -->
-
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=for-the-badge)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 
 <!-- ABOUT THE PROJECT -->
 
