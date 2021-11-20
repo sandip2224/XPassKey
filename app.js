@@ -1,97 +1,131 @@
 #!/usr/bin/env node
 
-const mongoose=require('mongoose')
+const mongoose = require('mongoose')
 const bcrypt = require('bcrypt');
-const program=require('commander')
-const chalk=require('chalk')
-const clipboardy=require('clipboardy')
+const program = require('commander')
+const chalk = require('chalk')
+const clipboardy = require('clipboardy')
+require('dotenv').config({ path: './config/config.env' })
 
-require('dotenv').config({path: './config/config.env'})
-const connectDB=require('./config/db')
-const passKeyModel=require('./models/passKeys')
+const connectDB = require('./config/db')
+const passKeyModel = require('./models/passKeys')
 
-// Connect to db
 connectDB()
 
 // Create password entry
-const addPassKey=(passKey)=>{
-    passKeyModel.create(passKey).then(passKey=>{
+const addPassKey = async (passKey) => {
+    try {
+        await passKeyModel.create(passKey)
         console.log(chalk.green("➕ PassKey added to database!!"));
-        mongoose.connection.close();
-    })
+        mongoose.connection.close()
+    }
+    catch (err) {
+        console.log("Error in creating passkey!!")
+        mongoose.connection.close()
+    }
 }
 
 // Find account and password
-const findPassKey=(res)=>{
-    const search=new RegExp(res.acc, 'i');
-    console.log("\nMatched Accounts")
-    passKeyModel.find({account: search}).then(c1 => {
-        c1.forEach(c2=>{
-            console.log(" ");
-            console.log("⚡ Account Name: "+c2.account);
-            console.log("⚡ PassKey: "+c2.passKey);
+const findPassKey = async (res) => {
+    try {
+        const search = new RegExp(res.acc, 'i')
+        console.log("\nMatched Accounts")
+        const c1 = await passKeyModel.find({ account: search })
+        c1.forEach(c2 => {
+            console.log(" ")
+            console.log("⚡ Account Name: " + c2.account)
+            console.log("⚡ Encrypted PassKey: " + c2.passKey)
         })
-        console.log(" ");
-        console.log(`🔍 Query returned ${c1.length} matches!!`);
-        mongoose.connection.close();
-    });
+        console.log(" ")
+        console.log(`🔍 Query returned ${c1.length} matches!!`)
+        mongoose.connection.close()
+    }
+    catch (err) {
+        console.log("Error in searching for passkey!!")
+        mongoose.connection.close()
+    }
 }
 
 // Update Account Password
-const updatePassKey=(res)=>{
-    console.log(res);
-    const query={ account: res.account };
-    const update=res;
-    passKeyModel.findOneAndUpdate(query, update, null, (err, ans)=>{
-        console.info('✔ PassKey updated')
-        mongoose.connection.close();
-    })
+const updatePassKey = async (res) => {
+    try {
+        const query = { account: res.account }
+        const update = res;
+        await passKeyModel.findOneAndUpdate(query, update, null, (err, ans) => {
+            console.info('✔ PassKey updated')
+            mongoose.connection.close()
+        })
+    }
+    catch (err) {
+        console.log("Error in updating passkey!!")
+        mongoose.connection.close()
+    }
 }
 
 // Delete account and password
-const deletePassKey=(res)=>{
-    const query={account: res.acc}
-    passKeyModel.findOneAndDelete(query, (err, ans)=>{
-        if(err) console.log(err)
-        else console.log("Deleted Passkey : ", ans);
-        mongoose.connection.close();
-    });
+const deletePassKey = async (res) => {
+    try {
+        const accountId = res.id;
+        if (!mongoose.isValidObjectId(accountId)) {
+            console.log("Account ID is not valid!!")
+            mongoose.connection.close()
+        }
+        else {
+            const status = await passKeyModel.findByIdAndDelete(accountId)
+            console.log("Deleted Passkey : ", status)
+            mongoose.connection.close()
+        }
+    }
+    catch (err) {
+        console.log("Error in deleting passkey!!")
+        mongoose.connection.close()
+    }
 }
 
 // Display all existing accounts and passwords
-const listPassKeys=()=>{
-    passKeyModel.find().then(c1=>{
+const listPassKeys = async () => {
+    try {
+        const c1 = await passKeyModel.find()
         console.log("\nList of Passwords")
-        c1.forEach(c2=>{
+        c1.forEach(c2 => {
             console.log(" ")
-            console.log("⚡ Account ID: "+c2._id)
-            console.log("⚡ Account Name: "+c2.account);
-            console.log("⚡ PassKey: "+c2.passKey);
+            console.log("⚡ Account ID: " + c2._id)
+            console.log("⚡ Account Name: " + c2.account)
+            console.log("⚡ PassKey: " + c2.passKey)
         })
         console.log(" ")
         console.info(`🔍️ ${c1.length} accounts(s) found`)
-        mongoose.connection.close();
-    })
+        mongoose.connection.close()
+    }
+    catch (err) {
+        console.log("Error in listing passwords!!")
+        mongoose.connection.close()
+    }
 }
 
-const authenticator=(res)=>{
-    if((res.id).match(/^[0-9a-fA-F]{24}$/)){
-        passKeyModel.find({_id: res.id}).then(c1 => {
-            bcrypt.compare(res.pass, c1[0].passKey, (err, result)=>{
-                if(result) console.log("Password is correct!!")
+const authenticator = async (res) => {
+    try {
+        if (!mongoose.isValidObjectId(res.id)) {
+            console.log("Account ID is not valid!!")
+            mongoose.connection.close()
+        }
+        else {
+            const c1 = await passKeyModel.find({ _id: res.id })
+            bcrypt.compare(res.pass, c1[0].passKey, (err, result) => {
+                if (result) console.log("Password is correct!!")
                 else console.log("Passkey is incorrect. Use [xpasskey update] to reset your passkey!!")
-            });
-            console.log(`🔍 Query returned ${c1.length} matches!!`);
-            mongoose.connection.close();
-        });
+            })
+            console.log(`🔍 Query returned ${c1.length} matches!!`)
+            mongoose.connection.close()
+        }
     }
-    else{
-        console.log("Account ID is invalid. Please recheck with your database.")
-        console.log("Ctrl+C to exit")
+    catch (err) {
+        console.log("Error in authenticating passwords!!")
+        mongoose.connection.close()
     }
 }
 
-module.exports={
+module.exports = {
     addPassKey,
     findPassKey,
     updatePassKey,
