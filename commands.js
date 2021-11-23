@@ -68,7 +68,7 @@ program
         }
         console.log(chalk.blue("🚩 Password copied to clipboard!!"))
         bcrypt.hash(generatePassword, 10, (err, hash) => {
-            updatePassKey({ account: answers.acc, passKey: hash })
+            updatePassKey({ id: answers.id, account: answers.acc, passKey: hash })
         })
     })
 

@@ -48,13 +48,23 @@ const findPassKey = async (res) => {
 
 // Update Account Password
 const updatePassKey = async (res) => {
+    if (!mongoose.isValidObjectId(res.id)) {
+        console.log("User ID is not valid!");
+        return mongoose.connection.close()
+    }
     try {
         const query = { account: res.account }
-        const update = res;
-        await passKeyModel.findOneAndUpdate(query, update, null, (err, ans) => {
-            console.info('✔ PassKey updated')
-            mongoose.connection.close()
-        })
+        const update = {
+            account: res.account,
+            passKey: res.passKey
+        }
+        await passKeyModel.findByIdAndUpdate(
+            res.id,
+            { $set: update },
+            { new: true }
+        )
+        console.info('✔ PassKey updated')
+        mongoose.connection.close()
     }
     catch (err) {
         console.log("Error in updating passkey!!")
