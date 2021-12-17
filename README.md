@@ -21,16 +21,6 @@
 - *Generated passskeys are automatically saved to user clipboard.*.
 - *Support for password validation inside the interface.*
 
-## New Updates
-- *Migrated application to MongoDB Atlas*
----
-
-<!-- BUILT WITH -->  
-
-## Feasible Applications
-
-- Can be used in user authentication to verify the integrity of user input and hashed password.
-
 ## How to Install Locally
 
 **1. Fork and clone this repository using**
@@ -52,7 +42,7 @@
   npm link
   ```
 
-**4. Create an environment variable (config.env) inside `/config` folder and set the following:**  
+**4. Create an environment variable (.env) inside root directory and set the following:**  
 
   ```
   MONGO_URI=<Your_Unique_MongoDB_Cluster_URI>
