@@ -25,7 +25,7 @@ const cQuestions = [
     {
         type: 'input',
         name: 'save',
-        message: 'Save passkey locally (passkeys.txt)?(y/n)',
+        message: 'Do you want to save passkey locally (passkeys.txt)?(y/n)',
         default: 'n'
     }
 ]
@@ -42,12 +42,12 @@ const uQuestions = [
     {
         type: 'input',
         name: 'id',
-        message: 'Enter account id [Use `xpasskey l` to find account id]:'
+        message: 'Enter account id:'
     },
     {
         type: 'input',
         name: 'acc',
-        message: 'Enter new account name [use previous account name if unchanged]:'
+        message: 'Enter new account name:'
     },
     {
         type: 'input',
@@ -70,7 +70,7 @@ const uQuestions = [
     {
         type: 'input',
         name: 'save',
-        message: 'Save passkey locally (passkeys.txt)?(y/n)',
+        message: 'Do you want to save passkey locally (passkeys.txt)?(y/n)',
         default: 'n'
     }
 ]
@@ -79,7 +79,7 @@ const dQuestions = [
     {
         type: 'input',
         name: 'id',
-        message: 'Enter account id [Use `xpasskey l` to find account id]:'
+        message: 'Enter account id:'
     }
 ]
 
@@ -87,7 +87,7 @@ const auth = [
     {
         type: 'input',
         name: 'id',
-        message: 'Enter account id [Use `xpasskey l` to find account id]:'
+        message: 'Enter account ID:'
     },
     {
         type: 'input',
