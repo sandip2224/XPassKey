@@ -1,7 +1,7 @@
 {
   "name": "xpasskey",
   "version": "2.0.0",
-  "description": "Revamped Password Generator",
+  "description": "Revamped CLI Password Generator",
   "main": "app.js",
   "preferGlobal": true,
   "bin": "./commands.js",
